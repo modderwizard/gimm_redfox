@@ -1,0 +1,2 @@
+# All .as files are ActionScript. We don't use AngelScript in this project.
+*.as linguist-language=ActionScript
