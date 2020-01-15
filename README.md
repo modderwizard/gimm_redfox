@@ -1,4 +1,4 @@
-# RedFox (Spring 2018 - Individual Game Project)
+# RedFox (Fall 2018 - Individual Game Project)
 
 This is the individual project I created for the GIMM 110 class in Spring 2018. 
 
