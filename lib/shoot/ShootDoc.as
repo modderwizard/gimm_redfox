@@ -6,8 +6,6 @@
 	import flash.ui.Keyboard;
 	import flash.text.TextField;
 	
-	import fl.VirtualCamera;
-	
 	import lib.shoot.gui.GuiScreen;
 	import lib.shoot.gui.GuiScreenStart;
 	import lib.shoot.gui.GuiScreenOptions;
@@ -24,6 +22,10 @@
 			this.setScreen(new GuiScreenStart());
 			
 			this.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
+			
+			// Scale manually since we no longer use VirtualCamera
+			this.scaleX = CameraManager.screenScale;
+			this.scaleY = CameraManager.screenScale;
 		}
 		
 		private function onAddedToStage(evt:Event):void
@@ -31,8 +33,6 @@
 			InputManager.initialize(this.stage);
 			
 			stage.scaleMode = StageScaleMode.SHOW_ALL;
-			
-			CameraManager.initialize(this.root);
 		}
 		
 		public function setScreen(screen:GuiScreen):void

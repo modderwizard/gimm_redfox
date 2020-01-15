@@ -5,36 +5,20 @@
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	
-	import fl.VirtualCamera;
-	
 	import lib.shoot.entity.Entity;
 	
 	public class CameraManager
 	{
 		private static var entityTracking:Entity = null;
 		
+		public static var screenScale:Number = 3;
+		
 		private static var posX:Number = 0;
 		private static var posY:Number = 0;
-		
-		private static var camDpiAdjust:Number = 1.00;
-		
-		private static var root:DisplayObject = null;
-		
-		public static function initialize(root:DisplayObject):void
-		{
-			var camera:VirtualCamera = VirtualCamera.getCamera(root);
-			
-			camera.setZoom(300 / CameraManager.camDpiAdjust);
-			camera.setPosition(320, 240);
-			
-			CameraManager.root = root;
-		}
 		
 		// TODO: 
 		public static function update(delta:Number):void
 		{
-			var camera:VirtualCamera = VirtualCamera.getCamera(CameraManager.root);
-			
 			var trackingX:Number = CameraManager.entityTracking.getBoundingBox().getCenterPoint().x;
 			var trackingY:Number = CameraManager.entityTracking.getBoundingBox().getCenterPoint().y;
 			
@@ -63,12 +47,6 @@
 			{
 				CameraManager.posY += trackingY - (CameraManager.posY + 240 - cameraYZone);
 			}
-			
-			CameraManager.posX = MathHelper.clamp(CameraManager.posX, -10000, 10000);
-			CameraManager.posY = MathHelper.clamp(CameraManager.posY, -10000, 10000);
-			
-			// Flash camera coordinates are inverted? So we have to subtract instead of add.
-			camera.setPosition(320 - CameraManager.posX, 240 - CameraManager.posY);
 		}
 		
 		public static function getCameraPosition():Point
